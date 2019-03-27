@@ -1,0 +1,36 @@
+<html>
+<head>
+<title>Form!</title>
+</head>
+<body>
+    <h1>Datos para pedido</h1>
+<form method ="POST" action="{{ url_for('index') }}">
+    {{ form.csrf_token }}
+    {{ form.nombre.label }}
+    {{ form.nombre }}
+    <ul>
+    {% for error in form.nombre.errors %}
+        <li style="color:red;">{{ error }}</li>
+    {% endfor %}
+    </ul>
+    {{ form.telefono.label}}
+    {{ form.telefono}}
+    <ul>
+            {% for error in form.telefono.errors %}
+                <li style="color:red;">{{ error }}</li>
+            {% endfor %}
+            </ul>
+    {{ form.direccion.label }}
+    {{ form.direccion}}
+    <ul>
+            {% for error in form.direccion.errors %}
+                <li style="color:red;">{{ error }}</li>
+            {% endfor %}
+            </ul>
+    {{ form.comentarios.label}}
+    {{ form.comentarios}}
+    <input type="submit" value="Enviar">
+
+</form>
+</body>
+</html>

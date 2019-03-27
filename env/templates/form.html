@@ -1,0 +1,56 @@
+{% from "_render_field.html" import render_field %}
+{% extends 'layout.html' %}
+
+<html>
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+        <title>Productos</title>
+</head>
+<body>
+
+        {% block body %}
+                <h1 class="h1 mb-10 font-weight-normal">DATOS DEL CLIENTE</h1>
+                <h1 class="h3 mb-3 font-weight-normal">Por favor introduzca sus datos</h1>
+                <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+                <form method ="POST" action="{{ url_for('pedido') }}">
+                    {{ form.csrf_token }}
+
+                    {{ render_field(form.nombre)}}
+                    {{ render_field(form.telefono)}}
+                    {{ render_field(form.direccion)}}
+                  
+                    {{ form.comentarios.label}}
+                    {{ form.comentarios}}
+
+                    {{ form.recaptcha }}
+                    {% for error in form.recaptcha.errors %}
+                        <ul>
+                                <li style="color:red;">{{ error }}</li>
+                        {% endfor %}
+                        </ul>
+                    <button type="submit" class="btn btn-success">Enviar</button>
+                    <p class="mt-1 mb-3 text-muted">&copy; 2019</p>
+                    <hr class="mb-4">
+                    
+
+                </form>
+       
+    <h1 id="listap"> Lista de productos: {{lsproductos}} </h1>
+    <p class="producto">Este es el precio de la gaseosa 1.5L : 2500</p>
+    <p class="producto">Este es el precio de la gaseosa 3L : 5000</p>
+    <p class="producto"> Este es el precio del Caramelo : 200</p>
+    <p class="producto">Este es el precio de la Leche : 2500</p>
+    <p class="producto">Este es el precio de las Papitas de pollo : 1600</p>
+    <p class="producto">Este es el precio del DeTodito : 2000</p>
+    <p class="producto">Este es el precio de las Empanadas : 2000</p>
+    <p class="producto">Este es el precio de la Caja de 12 huevos : 3000</p>
+    <p class="producto">Este es el precio del jamon 12 tajadas : 6000</p>
+    <p class="producto">Este es el precio del queso 12 tajadas : 6000</p>
+</body>
+{% endblock %}
+
+</html>
